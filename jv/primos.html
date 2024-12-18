@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Números Primos</title>
+    <style>
+        body{
+            background-image: url(https://i.pinimg.com/236x/4b/e5/10/4be5105601bf0d6ec63701727283b707.jpg);
+            background-size:30cm;
+            background-repeat: no-repeat;
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function esPrimo(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+
+            if (num % 2 === 0 || num % 3 === 0) return false;
+
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+            }
+
+            return true;
+        }
+
+        function generarPrimos() {
+            let n = parseInt(document.getElementById('numero').value);
+            let primos = [];
+
+            for (let i = 2; i <= n; i++) {
+                if (esPrimo(i)) {
+                    primos.push(i);
+                }
+            }
+
+            document.getElementById('resultado').innerText = primos.join(', ');
+        }
+    </script>
+</head>
+<body>
+    <h1>Generar Números Primos</h1>
+    <form>
+        <label for="numero">Número (n):</label>
+        <input type="number" id="numero" name="numero" min="1" required><br><br>
+        
+        <button type="button" onclick="generarPrimos()">Generar Primos</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

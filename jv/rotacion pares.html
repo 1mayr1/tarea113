@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotar Dígitos Pares</title>
+    <style>
+        body{
+            background-image: url(https://i.pinimg.com/236x/4b/e5/10/4be5105601bf0d6ec63701727283b707.jpg);
+            background-size:30cm;
+            background-repeat: no-repeat;
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function rotarParesDerecha() {
+            let num = document.getElementById('numero').value;
+            let str = num.toString();
+            let pares = [];
+
+            // Identificar los dígitos pares
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] % 2 === 0) {
+                    pares.push(str[i]);
+                }
+            }
+
+            // Rotar los dígitos pares hacia la derecha
+            if (pares.length > 1) {
+                pares.unshift(pares.pop());
+            }
+
+            // Reemplazar los dígitos pares originales con los nuevos valores rotados
+            let resultado = '';
+            let parIndex = 0;
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] % 2 === 0) {
+                    resultado += pares[parIndex++];
+                } else {
+                    resultado += str[i];
+                }
+            }
+
+            document.getElementById('resultado').innerText = parseInt(resultado, 10);
+        }
+    </script>
+</head>
+<body>
+    <h1>Rotar Dígitos Pares</h1>
+    <form>
+        <label for="numero">Número:</label>
+        <input type="number" id="numero" name="numero"><br><br>
+        
+        <button type="button" onclick="rotarParesDerecha()">Rotar Dígitos Pares</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

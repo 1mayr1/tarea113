@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Rotar Número</title>
+    <style>
+        body {
+            background-color: rgb(255, 244, 150);
+        }
+        form {
+            text-align: center;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function rotarIzquierda() {
+            let num = document.getElementById('numero').value;
+            let d = document.getElementById('digitos').value;
+            let str = num.toString();
+            let result = str.slice(d) + str.slice(0, d);
+            document.getElementById('resultadoIzquierda').innerText = parseInt(result, 10);
+        }
+
+        function rotarDerecha() {
+            let num = document.getElementById('numero').value;
+            let d = document.getElementById('digitos').value;
+            let str = num.toString();
+            let result = str.slice(-d) + str.slice(0, str.length - d);
+            document.getElementById('resultadoDerecha').innerText = parseInt(result, 10);
+        }
+    </script>
+</head>
+<body>
+    <h1>Rotar Número</h1>
+    <form>
+        <label for="numero">Número:</label>
+        <input type="number" id="numero" name="numero"><br><br>
+
+        <label for="digitos">Dígitos para rotar:</label>
+        <input type="number" id="digitos" name="digitos"><br><br>
+
+        <button type="button" onclick="rotarIzquierda()">Rotar a la Izquierda</button>
+        <button type="button" onclick="rotarDerecha()">Rotar a la Derecha</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <p>Rotación a la Izquierda: <span id="resultadoIzquierda"></span></p>
+    <p>Rotación a la Derecha: <span id="resultadoDerecha"></span></p>
+</body>
+</html>

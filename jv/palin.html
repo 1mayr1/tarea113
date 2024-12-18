@@ -1,0 +1,50 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificar Palíndromo</title>
+    <style>
+        body {
+            background-color: rgb(255, 244, 150);
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function esPalindromo() {
+            let palabra = document.getElementById('palabra').value.toLowerCase();
+            let palabraReversa = palabra.split('').reverse().join('');
+
+            if (palabra === palabraReversa) {
+                document.getElementById('resultado').innerText = `"${palabra}" es un PALÍNDROMO`;
+            } else {
+                document.getElementById('resultado').innerText = `"${palabra}" NO es un PALÍNDROMO`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Verificar Palíndromo</h1>
+    <form>
+        <label for="palabra">Palabra:</label>
+        <input type="text" id="palabra" name="palabra" required><br><br>
+        
+        <button type="button" onclick="esPalindromo()">Verificar</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>
