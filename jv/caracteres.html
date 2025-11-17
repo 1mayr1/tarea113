@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Invertir Cadena</title>
+    <style>
+        body{
+            background-image: url(https://i.pinimg.com/236x/4b/e5/10/4be5105601bf0d6ec63701727283b707.jpg);
+            background-size:30cm;
+            background-repeat: no-repeat;
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+
+        }
+    </style>
+    <script>
+        function invertirCadena() {
+            let cadena = document.getElementById('cadena').value;
+            let cadenaInvertida = cadena.split('').reverse().join('');
+            document.getElementById('resultado').innerText = cadenaInvertida;
+        }
+    </script>
+</head>
+<body>
+    <h1>Invertir Cadena de Caracteres</h1>
+    <form>
+        <label for="cadena">Cadena:</label>
+        <input type="text" id="cadena" name="cadena" required><br><br>
+        
+        <button type="button" onclick="invertirCadena()">Invertir</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

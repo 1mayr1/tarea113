@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Convertir a Números Romanos</title>
+    <style>
+        body {
+            background-color: rgb(255, 244, 150);
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function convertirARomanos(num) {
+            const valores = [
+                { romano: 'M', valor: 1000 },
+                { romano: 'CM', valor: 900 },
+                { romano: 'D', valor: 500 },
+                { romano: 'CD', valor: 400 },
+                { romano: 'C', valor: 100 },
+                { romano: 'XC', valor: 90 },
+                { romano: 'L', valor: 50 },
+                { romano: 'XL', valor: 40 },
+                { romano: 'X', valor: 10 },
+                { romano: 'IX', valor: 9 },
+                { romano: 'V', valor: 5 },
+                { romano: 'IV', valor: 4 },
+                { romano: 'I', valor: 1 }
+            ];
+
+            let resultado = '';
+            for (let i = 0; i < valores.length; i++) {
+                while (num >= valores[i].valor) {
+                    resultado += valores[i].romano;
+                    num -= valores[i].valor;
+                }
+            }
+            return resultado;
+        }
+
+        function convertir() {
+            let num = parseInt(document.getElementById('numero').value);
+            let resultado = convertirARomanos(num);
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+</head>
+<body>
+    <h1>Convertir a Números Romanos</h1>
+    <form>
+        <label for="numero">Número:</label>
+        <input type="number" id="numero" name="numero" min="1" required><br><br>
+        
+        <button type="button" onclick="convertir()">Convertir</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

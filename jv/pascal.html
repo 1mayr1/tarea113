@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Triángulo de Pascal</title>
+    <style>
+        body{
+            background-image: url(https://i.pinimg.com/236x/4b/e5/10/4be5105601bf0d6ec63701727283b707.jpg);
+            background-size:30cm;
+            background-repeat: no-repeat;
+        }
+        form {
+            text-align: center;
+        }
+        #resultado pre {
+            display: inline-block;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function generarTrianguloDePascal(n) {
+            let pascal = [];
+
+            for (let i = 0; i < n; i++) {
+                pascal[i] = [];
+                pascal[i][0] = 1;  // El primer elemento de cada fila es 1
+
+                for (let j = 1; j < i; j++) {
+                    pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
+                }
+
+                pascal[i][i] = 1;  // El último elemento de cada fila es 1
+            }
+
+            return pascal;
+        }
+
+        function mostrarTrianguloDePascal() {
+            let n = parseInt(document.getElementById('numero').value);
+            let pascal = generarTrianguloDePascal(n);
+
+            let resultado = '';
+            for (let i = 0; i < pascal.length; i++) {
+                resultado += pascal[i].join(' ') + '\n';
+            }
+
+            document.getElementById('resultado').innerHTML = '<pre>' + resultado + '</pre>';
+        }
+    </script>
+</head>
+<body>
+    <h1>Generar Triángulo de Pascal</h1>
+    <form>
+        <label for="numero">Número de filas (n):</label>
+        <input type="number" id="numero" name="numero" min="1" required><br><br>
+        
+        <button type="button" onclick="mostrarTrianguloDePascal()">Generar Triángulo</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

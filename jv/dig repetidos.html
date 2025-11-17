@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dígitos Repetidos</title>
+    <style>
+        body {
+            background-color: rgb(255, 244, 150);
+        }
+        form {
+            text-align: center;
+        }
+        .recuadro {
+            border: 2px solid #1a7552;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            width: fit-content;
+            background-color: #e6f5cffb;
+        }
+        h1 {
+            text-align: center;  
+        }
+    </style>
+    <script>
+        function mostrarDigitosRepetidos() {
+            let num = document.getElementById('numero').value;
+            let str = num.toString();
+            let conteo = {};
+
+            // Contar la frecuencia de cada dígito
+            for (let i = 0; i < str.length; i++) {
+                if (conteo[str[i]]) {
+                    conteo[str[i]]++;
+                } else {
+                    conteo[str[i]] = 1;
+                }
+            }
+
+            // Identificar los dígitos repetidos
+            let repetidos = [];
+            for (let digito in conteo) {
+                if (conteo[digito] > 1) {
+                    repetidos.push(digito);
+                }
+            }
+
+            // Mostrar los dígitos repetidos
+            document.getElementById('resultado').innerText = repetidos.length > 0 ? repetidos.join(', ') : 'No hay dígitos repetidos';
+        }
+    </script>
+</head>
+<body>
+    <h1>Dígitos Repetidos</h1>
+    <form>
+        <label for="numero">Número (mayor a 100):</label>
+        <input type="number" id="numero" name="numero" min="101"><br><br>
+        
+        <button type="button" onclick="mostrarDigitosRepetidos()">Mostrar Dígitos Repetidos</button>
+    </form>
+    
+    <h3>Resultado</h3>
+    <div id="resultado" class="recuadro"></div>
+</body>
+</html>

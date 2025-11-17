@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora con Botones</title>
+    <style>
+        .calculadora-contenedor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: #f0f0f0;
+        }
+
+        .calculadora {
+            background-color: #cc9cdf;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 250px;
+        }
+
+        .pantalla {
+            width: 230px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: right;
+            border: 2px solid #00acc1;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background-color: #e0f7fa;
+        }
+
+        .botones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .boton {
+            padding: 15px;
+            font-size: 18px;
+            background-color: #00acc1;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .boton:hover {
+            background-color: #00838f;
+        }
+
+        .boton-operacion {
+            background-color: #ffca28;
+            color: #000;
+        }
+
+        .boton-operacion:hover {
+            background-color: #634410;
+        }
+
+        .boton-igual {
+            grid-column: span 4;
+            background-color: #472aad;
+        }
+
+        .boton-igual:hover {
+            background-color: #0ab42698;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora-contenedor">
+        <div class="calculadora">
+            <input type="text" id="pantalla" class="pantalla" readonly>
+            <div class="botones">
+                <button class="boton" onclick="insertar('1')">1</button>
+                <button class="boton" onclick="insertar('2')">2</button>
+                <button class="boton" onclick="insertar('3')">3</button>
+                <button class="boton boton-operacion" onclick="insertar('+')">+</button>
+
+                <button class="boton" onclick="insertar('4')">4</button>
+                <button class="boton" onclick="insertar('5')">5</button>
+                <button class="boton" onclick="insertar('6')">6</button>
+                <button class="boton boton-operacion" onclick="insertar('-')">-</button>
+
+                <button class="boton" onclick="insertar('7')">7</button>
+                <button class="boton" onclick="insertar('8')">8</button>
+                <button class="boton" onclick="insertar('9')">9</button>
+                <button class="boton boton-operacion" onclick="insertar('*')">*</button>
+
+                <button class="boton" onclick="insertar('0')">0</button>
+                <button class="boton" onclick="insertar('.')">.</button>
+                <button class="boton" onclick="calcularFactorial()">!</button>
+                <button class="boton boton-operacion" onclick="insertar('/')">/</button>
+
+                <button class="boton boton-operacion" onclick="insertar('^')">x^y</button>
+                <button class="boton" onclick="limpiar()">C</button>
+                <button class="boton boton-igual" onclick="calcular()">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function insertar(valor) {
+            document.getElementById('pantalla').value += valor;
+        }
+
+        function limpiar() {
+            document.getElementById('pantalla').value = '';
+        }
+
+        function calcular() {
+            try {
+                let expresion = document.getElementById('pantalla').value;
+                if (expresion.includes('^')) {
+                    let partes = expresion.split('^');
+                    let base = parseFloat(partes[0]);
+                    let exponente = parseFloat(partes[1]);
+                    let resultado = Math.pow(base, exponente);
+                    document.getElementById('pantalla').value = resultado;
+                } else {
+                    let resultado = eval(expresion);
+                    document.getElementById('pantalla').value = resultado;
+                }
+            } catch (error) {
+                document.getElementById('pantalla').value = 'Error';
+            }
+        }
+
+        function calcularFactorial() {
+            let pantalla = document.getElementById('pantalla').value;
+            if (pantalla === '') return;
+
+            let num = parseInt(pantalla);
+            if (isNaN(num) || num < 0) {
+                document.getElementById('pantalla').value = 'Error';
+                return;
+            }
+
+            let resultado = factorial(num);
+            document.getElementById('pantalla').value = resultado;
+        }
+
+        function factorial(n) {
+            if (n === 0 || n === 1) return 1;
+            return n * factorial(n - 1);
+        }
+    </script>
+</body>
+</html>
